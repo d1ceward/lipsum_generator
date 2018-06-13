@@ -61,7 +61,7 @@ function createContent() {
 
 // ==> Settings function
 function save_options() {
-  var defaults = { 'form_values': { pCountId: '1', paragraphLengthId: '10' } }
+  var defaults = { 'form_values': { pCountId: '1', pLengthId: '10' } }
   var settings = { 'form_values': {} }
 
   for (var key in defaults.form_values)
