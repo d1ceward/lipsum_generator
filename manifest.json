@@ -1,0 +1,19 @@
+{
+  "name": "Lipsum Generator",
+  "version": "1.0.1",
+  "description": "Quick way to generate lorem ipsum text with customizable size.",
+  "permissions": ["storage"],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    "loremIpsum.txt"
+  ],
+  "icons": {
+    "16": "images/16.png",
+    "32": "images/32.png",
+    "48": "images/64.png",
+    "128": "images/128.png"
+  },
+  "manifest_version": 2
+}

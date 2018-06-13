@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+select.selectbox {
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:16px;
+  padding:2px;
+}
+
+.formText {
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:16px;
+  padding:2px;
+}
+
+#main {
+  width:610px;
+  background-color: #fff;
+}
+
+#contGenId {
+  width:600px;
+  height:300px;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:16px;
+  line-height:140%;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin: 5px;
+  resize: none;
+}
