@@ -1,8 +1,10 @@
 {
   "name": "Simple Lorem Ipsum Generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Quick way to generate lorem ipsum text with customizable size. Light and forever free.",
   "permissions": ["storage"],
+  "offline_enabled": true,
+  "incognito": "spanning",
   "browser_action": {
     "default_popup": "popup.html"
   },
