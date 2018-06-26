@@ -1,30 +1,11 @@
 @charset "utf-8";
 
-select.selectbox {
-  font-family:Verdana, Geneva, sans-serif;
-  font-size:16px;
-  padding:2px;
-}
+* { font-family: Verdana, Geneva, sans-serif }
+body { background-color: #bcbcbc }
+.selectbox, .form-text { padding: 4px; font-size: 16px }
+#contGenId { width: 640px; height: 300px; font-size: 16px; line-height: 140%; overflow: scroll; overflow-x: hidden; margin: 5px; resize: none }
 
-.formText {
-  font-family:Verdana, Geneva, sans-serif;
-  font-size:16px;
-  padding:2px;
-}
-
-#main {
-  width:610px;
-  background-color: #fff;
-}
-
-#contGenId {
-  width:600px;
-  height:300px;
-  font-family:Verdana, Geneva, sans-serif;
-  font-size:16px;
-  line-height:140%;
-  overflow: scroll;
-  overflow-x: hidden;
-  margin: 5px;
-  resize: none;
-}
+/* FOOTER */
+.footer { font-size: 12px; text-align: right }
+.footer a { color: inherit; text-decoration: none }
+.footer a:hover { color: #ffffff }

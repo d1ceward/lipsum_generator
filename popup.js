@@ -13,6 +13,12 @@ document.getElementById('pLengthId').onchange = () => {
   save_options()
 }
 
+// Handle paragraph type changes
+document.getElementById('pTypeId').onchange = () => {
+  createContent()
+  save_options()
+}
+
 // ==> Text generation functions
 // Split text by punctuation
 function textArray(text) {
@@ -25,22 +31,31 @@ function appendContent(content) {
   var text = ''
   var loopCount = document.getElementById('pLengthId').value
   var pNum = document.getElementById('pCountId').value
+  var pType = document.getElementById('pTypeId').value
 
   // Paragraph
   for (var pCount = 0; pCount < pNum; pCount++) {
+    if (pType == 'Yes')
+      text = text + '&lt;p&gt;'
     // Sentence
     for (var sCount = 0; sCount < loopCount; sCount++) {
       var rand = Math.floor((Math.random()*19))
       var sentence = content[rand]
 
       // Append space after punctuation if not last
-      if (sCount == loopCount - 1)
+      if (sCount == loopCount - 1 || pType == 'Yes')
         text += sentence + '.'
       else
         text += sentence + '. '
     }
+    if (pType == 'Yes')
+      text = text + '&lt;/p&gt;'
     if (pCount != pNum - 1)
-      text += "\n\n"
+      if (pType == 'Yes')
+        text += "\n<br/>\n"
+      else
+        text += "\n\n"
+
   }
   document.getElementById('contGenId').innerHTML = text
 }

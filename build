@@ -1,0 +1,5 @@
+trap "exit" INT
+printf "\033[0;32m====>\033[0m Starting building lipsum_generator.zip\n"
+rm ./lipsum_generator.zip
+find . -path '*/.*' -prune -o -type f -print | zip ./lipsum_generator.zip -@
+printf "\033[0;32m==>\033[0m Done...\n"

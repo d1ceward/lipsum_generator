@@ -6,42 +6,60 @@
     <link rel='stylesheet' media='all' href='popup.css'>
   </head>
   <body>
-    <div id="main">
-      <form>
-        <label for="pCountId" class="formText">Generate</label>
-        <select class="selectbox" id="pCountId" name="pCount">
-            <option selected="selected" value="1">1 paragraph</option>
-            <option value="2">2 paragraphs</option>
-            <option value="3">3 paragraphs</option>
-            <option value="4">4 paragraphs</option>
-            <option value="5">5 paragraphs</option>
-        </select>
-        <label for="pLengthId" class="formText">with </label>
-        <select class="selectbox" id="pLengthId" name="pLength">
-            <option value="1">1 sentence</option>
-            <option value="2">2 sentences</option>
-            <option value="3">3 sentences</option>
-            <option value="4">4 sentences</option>
-            <option value="5">5 sentences</option>
-            <option value="6">6 sentences</option>
-            <option value="7">7 sentences</option>
-            <option value="8">8 sentences</option>
-            <option value="9">9 sentences</option>
-            <option selected="selected" value="10">10 sentences</option>
-            <option value="11">11 sentences</option>
-            <option value="12">12 sentences</option>
-            <option value="13">13 sentences</option>
-            <option value="14">14 sentences</option>
-            <option value="15">15 sentences</option>
-            <option value="16">16 sentences</option>
-            <option value="17">17 sentences</option>
-            <option value="18">18 sentences</option>
-            <option value="19">19 sentences</option>
-            <option value="20">20 sentences</option>
-        </select>
-        <span class="formText"> per paragraph.</span>
-      </form>
-      <textarea id="contGenId" name="contentArea"></textarea>
+    <span class="form-text">Generate</span>
+    <select class= "selectbox" id="pCountId" name="pCount">
+      <option selected="selected" value="1">1 paragraph</option>
+      <option value="2">2 paragraphs</option>
+      <option value="3">3 paragraphs</option>
+      <option value="4">4 paragraphs</option>
+      <option value="5">5 paragraphs</option>
+      <option value="6">6 paragraphs</option>
+      <option value="7">7 paragraphs</option>
+      <option value="8">8 paragraphs</option>
+      <option value="9">9 paragraphs</option>
+      <option value="10">10 paragraphs</option>
+    </select>
+    <span class="form-text"> with </span>
+    <select class="selectbox" id="pLengthId" name="pLength">
+        <option value="1">1 sentence</option>
+        <option value="2">2 sentences</option>
+        <option value="3">3 sentences</option>
+        <option value="4">4 sentences</option>
+        <option value="5">5 sentences</option>
+        <option value="6">6 sentences</option>
+        <option value="7">7 sentences</option>
+        <option value="8">8 sentences</option>
+        <option value="9">9 sentences</option>
+        <option selected="selected" value="10">10 sentences</option>
+        <option value="11">11 sentences</option>
+        <option value="12">12 sentences</option>
+        <option value="13">13 sentences</option>
+        <option value="14">14 sentences</option>
+        <option value="15">15 sentences</option>
+        <option value="16">16 sentences</option>
+        <option value="17">17 sentences</option>
+        <option value="18">18 sentences</option>
+        <option value="19">19 sentences</option>
+        <option value="20">20 sentences</option>
+        <option value="21">21 sentences</option>
+        <option value="22">22 sentences</option>
+        <option value="23">23 sentences</option>
+        <option value="24">24 sentences</option>
+        <option value="25">25 sentences</option>
+        <option value="26">26 sentences</option>
+        <option value="27">27 sentences</option>
+        <option value="28">28 sentences</option>
+        <option value="29">29 sentences</option>
+        <option value="30">30 sentences</option>
+    </select>
+    <span class="form-text"> per paragraph | HTML tags </span>
+    <select class="selectbox" id="pTypeId" name="pType">
+      <option selected="selected" value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
+    <textarea id="contGenId" name="contentArea"></textarea>
+    <div class="footer">
+      <a href="https://github.com/D1ceWard/lipsum_generator" target="_blank">SLIG on Github</a> - v1.1.0
     </div>
     <script src="popup.js"></script>
   </body>
