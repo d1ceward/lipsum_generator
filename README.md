@@ -1,10 +1,10 @@
-# Simple Lorem Ipsum Generator
+# Lipsum Generator
 Google Chrome extension for Simple Lorem Ipsum Generator (SLIG)
 
 ## Key features
  - Customizable size (paragraphs & sentences)
  - HTML tags (`<p>` and `<br \>`)
- - Remembering settings and storing them in chrome sync so they synchronize across browsers.
+ - Remembering settings and storing them in chrome sync so they synchronize across browsers
  - And of course, forever free unlike others...
 
  ## Contributing
