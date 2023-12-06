@@ -20,13 +20,6 @@ document.getElementById('pTypeId').onchange = () => {
 }
 
 // ==> Text generation functions
-// Split text by punctuation
-function textArray(text) {
-  text = text.split(/[.?!]+ /)
-  text.pop()
-  return text
-}
-
 function appendContent(content) {
   var text = ''
   var loopCount = document.getElementById('pLengthId').value
@@ -60,18 +53,33 @@ function appendContent(content) {
   document.getElementById('contGenId').innerHTML = text
 }
 
-// Get example lorem text by xhr
+// Get example lorem text
 function createContent() {
-  var req = new XMLHttpRequest()
+  var textArray = [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Curabitur aliquet quam id dui posuere blandit.',
+    'Cras ultricies ligula sed magna dictum porta.',
+    'Sed porttitor lectus nibh.',
+    'Nulla porttitor accumsan tincidunt.',
+    'Vivamus suscipit tortor eget felis porttitor volutpat.',
+    'Quisque velit nisi, pretium ut lacinia in, elementum id enim.',
+    'Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.',
+    'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit ' +
+      'neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.',
+    'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+    'Proin eget tortor risus.',
+    'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+    'Donec rutrum congue leo eget malesuada.',
+    'Nulla quis lorem ut libero malesuada feugiat.',
+    'Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.',
+    'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+    'Pellentesque in ipsum id orci porta dapibus.',
+    'Donec sollicitudin molestie malesuada.',
+    'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.',
+    'Duis volutpat fringilla risus, et vulputate lorem tempor sed.'
+  ]
 
-  req.open('GET', chrome.extension.getURL('loremIpsum.txt'), true)
-  req.onreadystatechange = () => {
-    if (req.readyState == 4 && req.responseText) {
-      appendContent(textArray(req.responseText))
-      return req.responseText
-    }
-  }
-  req.send(null)
+  appendContent(textArray)
 }
 
 // ==> Settings function
