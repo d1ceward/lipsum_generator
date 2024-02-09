@@ -1,5 +1,14 @@
 trap "exit" INT
 printf "\033[0;32m====>\033[0m Starting building lipsum_generator.zip\n"
 rm ./lipsum_generator.zip
-find . -path '*/.*' -prune -o -type f -print | zip ./lipsum_generator.zip -@
+cat <<'EOF' | zip ./lipsum_generator.zip -@
+./images/icons/128.png
+./images/icons/16.png
+./images/icons/32.png
+./images/icons/64.png
+./manifest.json
+./popup.css
+./popup.html
+./popup.js
+EOF
 printf "\033[0;32m==>\033[0m Done...\n"
