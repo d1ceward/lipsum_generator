@@ -2,19 +2,19 @@ restore_options();
 
 // ==> Handler functions
 // Handle paragraph count changes
-document.getElementById('pCountId').onchange = () => {
+document.getElementById('paragraph-count').onchange = () => {
   createContent()
   save_options()
 }
 
 // Handle sentence count changes
-document.getElementById('pLengthId').onchange = () => {
+document.getElementById('paragraph-length').onchange = () => {
   createContent()
   save_options()
 }
 
 // Handle paragraph type changes
-document.getElementById('pTypeId').onchange = () => {
+document.getElementById('paragraph-type').onchange = () => {
   createContent()
   save_options()
 }
@@ -22,35 +22,38 @@ document.getElementById('pTypeId').onchange = () => {
 // ==> Text generation functions
 function appendContent(content) {
   var text = ''
-  var loopCount = document.getElementById('pLengthId').value
-  var pNum = document.getElementById('pCountId').value
-  var pType = document.getElementById('pTypeId').value
+  var paragraphCount = document.getElementById('paragraph-count').value
+  var paragraphLength = document.getElementById('paragraph-length').value
+  var paragraphType = document.getElementById('paragraph-type').value
 
   // Paragraph
-  for (var pCount = 0; pCount < pNum; pCount++) {
-    if (pType == 'Yes')
+  for (var paragraphIndex = 0; paragraphIndex < paragraphCount; paragraphIndex++) {
+    if (paragraphType == 'Yes')
       text = text + '&lt;p&gt;'
+
     // Sentence
-    for (var sCount = 0; sCount < loopCount; sCount++) {
-      var rand = Math.floor((Math.random()*19))
-      var sentence = content[rand]
+    for (var sentenceIndex = 0; sentenceIndex < paragraphLength; sentenceIndex++) {
+      var random = Math.floor(Math.random() * 19)
+      var sentence = content[random]
 
       // Append space after punctuation if not last
-      if (sCount == loopCount - 1 || pType == 'Yes')
+      if (sentenceIndex == paragraphLength - 1 || paragraphType == 'Yes')
         text += sentence + '.'
       else
         text += sentence + '. '
     }
-    if (pType == 'Yes')
+
+    if (paragraphType == 'Yes')
       text = text + '&lt;/p&gt;'
-    if (pCount != pNum - 1)
-      if (pType == 'Yes')
+
+    if (paragraphIndex != paragraphCount - 1)
+      if (paragraphType == 'Yes')
         text += "\n<br/>\n"
       else
         text += "\n\n"
-
   }
-  document.getElementById('contGenId').innerHTML = text
+
+  document.getElementById('content-area').innerHTML = text
 }
 
 // Get example lorem text
@@ -76,7 +79,7 @@ function createContent() {
     'Pellentesque in ipsum id orci porta dapibus',
     'Donec sollicitudin molestie malesuada',
     'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus',
-    'Duis volutpat fringilla risus, et vulputate lorem tempor sed.'
+    'Duis volutpat fringilla risus, et vulputate lorem tempor sed'
   ]
 
   appendContent(textArray)
@@ -84,11 +87,18 @@ function createContent() {
 
 // ==> Settings function
 function save_options() {
-  var defaults = { 'form_values': { pCountId: '1', pLengthId: '10' } }
+  var defaults = {
+    'form_values': {
+      'paragraph-count': '1',
+      'paragraph-length': '10',
+      'paragraph-type': 'No'
+    }
+  }
   var settings = { 'form_values': {} }
 
   for (var key in defaults.form_values)
     settings['form_values'][key] = document.getElementById(key).value
+
   chrome.storage.sync.set(settings)
 }
 
@@ -96,6 +106,7 @@ function restore_options() {
   chrome.storage.sync.get('form_values', (settings) => {
     for (var key in settings.form_values)
       document.getElementById(key).value = settings.form_values[key]
+
     createContent()
   })
 }

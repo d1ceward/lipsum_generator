@@ -1,11 +1,68 @@
 @charset "utf-8";
 
-* { font-family: Verdana, Geneva, sans-serif }
-body { background-color: #ffffff }
-.selectbox, .form-text { padding: 4px; font-size: 14px }
-#contGenId { width: 640px; height: 300px; font-size: 14px; line-height: 140%; overflow: scroll; overflow-x: hidden; margin: 5px; resize: none }
+* { font-family: Verdana, Geneva, sans-serif; }
 
-/* FOOTER */
-.footer { font-size: 10px; text-align: right }
-.footer a { color: inherit; text-decoration: none }
-.footer a:hover { color: #bcbcbc }
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+.selectbox,
+.form-text {
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 4px;
+}
+
+.scroll-container {
+  border-radius: 8px;
+  margin: 10px 6px 6px;
+  overflow: hidden;
+}
+
+#content-area {
+  font-size: 14px;
+  height: 300px;
+  line-height: 140%;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 6px 10px;
+  resize: none;
+  width: 618px;
+}
+
+.footer {
+  font-size: 10px;
+  text-align: right;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #bcbcbc;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #2e2e2e;
+    color: #fff;
+  }
+
+  .selectbox {
+    background-color: #6b6b6b;
+    color: #fff;
+  }
+
+  #content-area {
+    background-color: #6b6b6b;
+    color: #fff;
+  }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #b0bbbf; }
+::-webkit-scrollbar-thumb { background: #393c3f; }
+::-webkit-scrollbar-thumb:hover { background: #232527; }

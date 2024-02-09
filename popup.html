@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Lipsum generator</title>
+    <title>Simple Lorem Ipsum Generator</title>
     <link rel='stylesheet' media='all' href='popup.css'>
   </head>
   <body>
     <span class="form-text">Generate</span>
-    <select class= "selectbox" id="pCountId" name="pCount">
+    <select class= "selectbox" id="paragraph-count" name="paragraph-count">
       <option selected="selected" value="1">1 paragraph</option>
       <option value="2">2 paragraphs</option>
       <option value="3">3 paragraphs</option>
@@ -20,7 +20,7 @@
       <option value="10">10 paragraphs</option>
     </select>
     <span class="form-text"> with </span>
-    <select class="selectbox" id="pLengthId" name="pLength">
+    <select class="selectbox" id="paragraph-length" name="paragraph-length">
         <option value="1">1 sentence</option>
         <option value="2">2 sentences</option>
         <option value="3">3 sentences</option>
@@ -53,13 +53,15 @@
         <option value="30">30 sentences</option>
     </select>
     <span class="form-text"> per paragraph | HTML tags </span>
-    <select class="selectbox" id="pTypeId" name="pType">
+    <select class="selectbox" id="paragraph-type" name="paragraph-type">
       <option selected="selected" value="No">No</option>
       <option value="Yes">Yes</option>
     </select>
-    <textarea id="contGenId" name="contentArea"></textarea>
+    <div class="scroll-container">
+      <textarea id="content-area" name="content-area" spellcheck="false"></textarea>
+    </div>
     <div class="footer">
-      <a href="https://github.com/d1ceward/lipsum_generator" target="_blank">SLIG on Github</a> - v1.2.1
+      <a href="https://github.com/d1ceward/lipsum_generator" target="_blank">SLIG on Github</a> - v1.3.0
     </div>
     <script src="popup.js"></script>
   </body>
