@@ -1,64 +1,71 @@
-restore_options();
+document.addEventListener('DOMContentLoaded', () => {
+  restoreOptions()
 
-// ==> Handler functions
-// Handle paragraph count changes
-document.getElementById('paragraph-count').onchange = () => {
-  createContent()
-  save_options()
-}
+  const copyButton = document.getElementById('copy-button')
+  const regenButton = document.getElementById('regenerate-button')
+  const textarea = document.getElementById('content-area')
+  const paragraphCount = document.getElementById('paragraph-count')
+  const paragraphLength = document.getElementById('paragraph-length')
+  const paragraphType = document.getElementById('paragraph-type')
 
-// Handle sentence count changes
-document.getElementById('paragraph-length').onchange = () => {
-  createContent()
-  save_options()
-}
+  if (paragraphCount)
+    handleChange(paragraphCount)
 
-// Handle paragraph type changes
-document.getElementById('paragraph-type').onchange = () => {
-  createContent()
-  save_options()
-}
+  if (paragraphLength)
+    handleChange(paragraphLength)
 
-// ==> Text generation functions
-function appendContent(content) {
-  var text = ''
-  var paragraphCount = document.getElementById('paragraph-count').value
-  var paragraphLength = document.getElementById('paragraph-length').value
-  var paragraphType = document.getElementById('paragraph-type').value
+  if (paragraphType)
+    handleChange(paragraphType)
 
-  // Paragraph
-  for (var paragraphIndex = 0; paragraphIndex < paragraphCount; paragraphIndex++) {
-    if (paragraphType == 'Yes')
-      text = text + '&lt;p&gt;'
-
-    // Sentence
-    for (var sentenceIndex = 0; sentenceIndex < paragraphLength; sentenceIndex++) {
-      var random = Math.floor(Math.random() * 19)
-      var sentence = content[random]
-
-      // Append space after punctuation if not last
-      if (sentenceIndex == paragraphLength - 1 || paragraphType == 'Yes')
-        text += sentence + '.'
-      else
-        text += sentence + '. '
+  if (copyButton && textarea) {
+    copyButton.onclick = function () {
+      textarea.select()
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        this.textContent = 'Copied!'
+        setTimeout(() => {
+          this.textContent = 'Copy'
+        }, 1200)
+      })
     }
-
-    if (paragraphType == 'Yes')
-      text = text + '&lt;/p&gt;'
-
-    if (paragraphIndex != paragraphCount - 1)
-      if (paragraphType == 'Yes')
-        text += "\n<br/>\n"
-      else
-        text += "\n\n"
   }
 
-  document.getElementById('content-area').innerHTML = text
+  if (regenButton)
+    regenButton.onclick = createContent
+
+  if (textarea)
+    textarea.onclick = () => textarea.select()
+})
+
+// Generate and append lorem ipsum content
+function appendContent(content) {
+  const paragraphCount = parseInt(document.getElementById('paragraph-count').value, 10)
+  const paragraphLength = parseInt(document.getElementById('paragraph-length').value, 10)
+  const paragraphType = document.getElementById('paragraph-type').value
+  let text = ''
+
+  for (let paragraphIndex = 0; paragraphIndex < paragraphCount; paragraphIndex++) {
+    if (paragraphType === 'Yes')
+      text += '&lt;p&gt;'
+
+    for (let sentenceIndex = 0; sentenceIndex < paragraphLength; sentenceIndex++) {
+      const random = Math.floor(Math.random() * content.length)
+      const sentence = content[random]
+      text += sentence + (sentenceIndex === paragraphLength - 1 || paragraphType === 'Yes' ? '.' : '. ')
+    }
+
+    if (paragraphType === 'Yes')
+      text += '&lt;/p&gt;'
+
+    if (paragraphIndex !== paragraphCount - 1)
+      text += paragraphType === 'Yes' ? "\n<br/>\n" : "\n\n"
+  }
+
+  document.getElementById('content-area').value = text
 }
 
-// Get example lorem text
+// Generate lorem ipsum text
 function createContent() {
-  var textArray = [
+  const textArray = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     'Curabitur aliquet quam id dui posuere blandit',
     'Cras ultricies ligula sed magna dictum porta',
@@ -67,8 +74,7 @@ function createContent() {
     'Vivamus suscipit tortor eget felis porttitor volutpat',
     'Quisque velit nisi, pretium ut lacinia in, elementum id enim',
     'Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem',
-    'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit ' +
-      'neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula',
+    'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula',
     'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a',
     'Proin eget tortor risus',
     'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi',
@@ -85,28 +91,39 @@ function createContent() {
   appendContent(textArray)
 }
 
-// ==> Settings function
-function save_options() {
-  var defaults = {
-    'form_values': {
+// Save user options to chrome storage
+function saveOptions() {
+  const keys = ['paragraph-count', 'paragraph-length', 'paragraph-type']
+  const formValues = {}
+
+  keys.forEach(key => {
+    formValues[key] = document.getElementById(key).value
+  })
+
+  chrome.storage.sync.set({ form_values: formValues })
+}
+
+// Restore user options from chrome storage
+function restoreOptions() {
+  chrome.storage.sync.get('form_values', settings => {
+    const defaults = {
       'paragraph-count': '1',
       'paragraph-length': '10',
       'paragraph-type': 'No'
     }
-  }
-  var settings = { 'form_values': {} }
+    const values = settings.form_values || defaults
 
-  for (var key in defaults.form_values)
-    settings['form_values'][key] = document.getElementById(key).value
-
-  chrome.storage.sync.set(settings)
-}
-
-function restore_options() {
-  chrome.storage.sync.get('form_values', (settings) => {
-    for (var key in settings.form_values)
-      document.getElementById(key).value = settings.form_values[key]
+    Object.keys(defaults).forEach(key => {
+      document.getElementById(key).value = values[key] || defaults[key]
+    })
 
     createContent()
   })
+}
+
+function handleChange(element) {
+  element.onchange = () => {
+    saveOptions()
+    createContent()
+  }
 }
