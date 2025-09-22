@@ -1,10 +1,32 @@
 @charset "utf-8";
 
-* { font-family: Verdana, Geneva, sans-serif; }
+/* Utility Classes */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Base Styles */
+* {
+  font-family: Verdana, Geneva, sans-serif;
+}
 
 body {
   background-color: #fff;
   color: #000;
+}
+
+/* Form Elements */
+
+.selectbox {
+  cursor: pointer;
 }
 
 .selectbox,
@@ -14,6 +36,22 @@ body {
   padding: 4px;
 }
 
+/* Button Styles */
+.button {
+  border: 1px solid #bcbcbc;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 6px 16px;
+  font-size: 14px;
+  transition: background 0.15s, border 0.15s;
+}
+
+.button:hover, .button:active {
+  background: #e0e0e0;
+  border-color: #888;
+}
+
+/* Layout Containers */
 .scroll-container {
   border-radius: 8px;
   margin: 10px 6px 6px;
@@ -31,8 +69,20 @@ body {
   width: 618px;
 }
 
+/* Footer */
 .footer {
   font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-right {
   text-align: right;
 }
 
@@ -45,6 +95,21 @@ body {
   color: #bcbcbc;
 }
 
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #b0bbbf;
+}
+::-webkit-scrollbar-thumb {
+  background: #393c3f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #232527;
+}
+
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #2e2e2e;
@@ -56,13 +121,19 @@ body {
     color: #fff;
   }
 
+  .button {
+    background-color: #6b6b6b;
+    color: #fff;
+    border: 1px solid #888;
+  }
+
+  .button:hover, .button:active {
+    background-color: #494949;
+    border-color: #bcbcbc;
+  }
+
   #content-area {
     background-color: #6b6b6b;
     color: #fff;
   }
 }
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #b0bbbf; }
-::-webkit-scrollbar-thumb { background: #393c3f; }
-::-webkit-scrollbar-thumb:hover { background: #232527; }
