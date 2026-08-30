@@ -6,6 +6,7 @@
     <link rel='stylesheet' media='all' href='popup.css'>
   </head>
   <body>
+    <label class="visually-hidden" for="paragraph-count">Number of paragraphs</label>
     <span class="form-text">Generate</span>
     <select class= "selectbox" id="paragraph-count" name="paragraph-count">
       <option selected="selected" value="1">1 paragraph</option>
@@ -19,6 +20,7 @@
       <option value="9">9 paragraphs</option>
       <option value="10">10 paragraphs</option>
     </select>
+    <label class="visually-hidden" for="paragraph-length">Sentences per paragraph</label>
     <span class="form-text"> with </span>
     <select class="selectbox" id="paragraph-length" name="paragraph-length">
       <option value="1">1 sentence</option>
@@ -52,6 +54,7 @@
       <option value="29">29 sentences</option>
       <option value="30">30 sentences</option>
     </select>
+    <label class="visually-hidden" for="paragraph-type">Wrap output in HTML tags</label>
     <span class="form-text"> per paragraph | HTML tags </span>
     <select class="selectbox" id="paragraph-type" name="paragraph-type">
       <option selected="selected" value="No">No</option>
@@ -66,7 +69,7 @@
         <button class="button" id="regenerate-button" type="button">Regenerate</button>
       </div>
       <div class="footer-right">
-        <a href="https://github.com/d1ceward/lipsum_generator" target="_blank">SLIG on Github</a> - v1.4.0
+        <a href="https://github.com/d1ceward/lipsum_generator" target="_blank">SLIG on Github</a> - v<span id="version"></span>
       </div>
     </div>
     <script src="popup.js"></script>

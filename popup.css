@@ -100,13 +100,13 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #b0bbbf;
+  background: #e6e6e6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #393c3f;
+  background: #b0bbbf;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #232527;
+  background: #8c9599;
 }
 
 /* Dark Mode */
@@ -135,5 +135,17 @@ body {
   #content-area {
     background-color: #6b6b6b;
     color: #fff;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #393c3f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8c9599;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b0bbbf;
   }
 }

@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const paragraphCount = document.getElementById('paragraph-count')
   const paragraphLength = document.getElementById('paragraph-length')
   const paragraphType = document.getElementById('paragraph-type')
+  const version = document.getElementById('version')
+
+  if (version)
+    version.textContent = chrome.runtime.getManifest().version
 
   if (paragraphCount)
     handleChange(paragraphCount)
@@ -19,12 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (copyButton && textarea) {
     copyButton.onclick = function () {
-      textarea.select()
       navigator.clipboard.writeText(textarea.value).then(() => {
-        this.textContent = 'Copied!'
-        setTimeout(() => {
-          this.textContent = 'Copy'
-        }, 1200)
+        flashLabel(this, 'Copied!')
+      }).catch(() => {
+        flashLabel(this, 'Failed')
       })
     }
   }
@@ -45,19 +47,19 @@ function appendContent(content) {
 
   for (let paragraphIndex = 0; paragraphIndex < paragraphCount; paragraphIndex++) {
     if (paragraphType === 'Yes')
-      text += '&lt;p&gt;'
+      text += '<p>'
 
     for (let sentenceIndex = 0; sentenceIndex < paragraphLength; sentenceIndex++) {
       const random = Math.floor(Math.random() * content.length)
       const sentence = content[random]
-      text += sentence + (sentenceIndex === paragraphLength - 1 || paragraphType === 'Yes' ? '.' : '. ')
+      text += sentence + (sentenceIndex === paragraphLength - 1 ? '.' : '. ')
     }
 
     if (paragraphType === 'Yes')
-      text += '&lt;/p&gt;'
+      text += '</p>'
 
     if (paragraphIndex !== paragraphCount - 1)
-      text += paragraphType === 'Yes' ? "\n<br/>\n" : "\n\n"
+      text += paragraphType === 'Yes' ? "\n" : "\n\n"
   }
 
   document.getElementById('content-area').value = text
@@ -119,6 +121,17 @@ function restoreOptions() {
 
     createContent()
   })
+}
+
+// Briefly swap a button label, then restore it
+function flashLabel(button, message) {
+  const original = button.dataset.label || button.textContent
+
+  button.dataset.label = original
+  button.textContent = message
+  setTimeout(() => {
+    button.textContent = original
+  }, 1200)
 }
 
 function handleChange(element) {
