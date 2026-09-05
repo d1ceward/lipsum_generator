@@ -1,0 +1,24 @@
+{
+  "name": "lipsum-generator",
+  "version": "1.5.0",
+  "private": true,
+  "type": "module",
+  "description": "Simple Lorem Ipsum Generator, a lightweight browser extension.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d1ceward/lipsum_generator.git"
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check . && pnpm test",
+    "test": "node --test",
+    "build": "./build",
+    "build:all": "./build --firefox"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.12"
+  },
+  "packageManager": "pnpm@10.34.5"
+}
