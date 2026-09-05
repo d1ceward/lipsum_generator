@@ -28,6 +28,16 @@ describe('generate', () => {
     }
   })
 
+  it('gives every paragraph its own bag instead of sharing one', () => {
+    const length = SENTENCES.length - 5
+
+    for (let run = 0; run < 200; run++) {
+      const paragraphs = generate({ count: 3, length }).split('\n\n')
+
+      for (const paragraph of paragraphs) assert.equal(new Set(sentencesOf(paragraph)).size, length)
+    }
+  })
+
   it('reshuffles instead of running dry when more sentences are asked for', () => {
     const text = generate({ count: 1, length: SENTENCES.length + 5 })
 

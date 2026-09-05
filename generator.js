@@ -134,12 +134,15 @@ export function generate({
   const limits = LIMITS[unit] || LIMITS.sentences
   const paragraphCount = clamp(count, LIMITS.count)
   const paragraphLength = clamp(length === null ? limits.default : length, limits)
-  const draw = createDraw(sentences, random, sentences.includes(OPENER))
+  const hasOpener = sentences.includes(OPENER)
   const build = unit === 'words' ? buildByWords : buildBySentences
   const paragraphs = []
 
+  // Each paragraph gets its own bag, otherwise a paragraph starting on the leftovers of the previous one
+  // reshuffles mid-way and can repeat a sentence it has already used. Only the first one is forced to open
+  // on the canonical sentence.
   for (let index = 0; index < paragraphCount; index++) {
-    const body = build(draw, paragraphLength)
+    const body = build(createDraw(sentences, random, index === 0 && hasOpener), paragraphLength)
 
     paragraphs.push(html ? `<p>${body}</p>` : body)
   }
