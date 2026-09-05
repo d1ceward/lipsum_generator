@@ -34,6 +34,14 @@ export function storageSet(values) {
 // Fills every [data-i18n] node with its translation. `data-i18n-attr` targets an attribute instead of the
 // text content, e.g. data-i18n-attr="aria-label".
 export function localize(root = document) {
+  // The markup ships with lang="en" to match the inline fallback text; once the strings are swapped the
+  // document has to declare the locale it actually shows, or screen readers keep reading it with English
+  // pronunciation rules.
+  const doc = root.ownerDocument ?? root
+  const language = api.i18n.getUILanguage?.()
+
+  if (doc.documentElement && language) doc.documentElement.lang = language
+
   root.querySelectorAll('[data-i18n]').forEach(element => {
     const message = t(element.dataset.i18n)
     const attribute = element.dataset.i18nAttr
