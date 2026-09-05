@@ -11,8 +11,14 @@ readonly VERSION="$(node -p "require('./manifest.json').version")"
 
 # Everything the extension loads at runtime. Docs, tests and CI config stay out.
 readonly FILES=(
+./_locales/de/messages.json
 ./_locales/en/messages.json
+./_locales/es/messages.json
 ./_locales/fr/messages.json
+./_locales/it/messages.json
+./_locales/nl/messages.json
+./_locales/pl/messages.json
+./_locales/pt_BR/messages.json
 ./browser.js
 ./generator.js
 ./images/icons/128.png

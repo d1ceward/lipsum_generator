@@ -1,0 +1,70 @@
+{
+  "extName": {
+    "message": "Simple Lorem Ipsum Generator",
+    "description": "Extension name shown in the browser and in the store."
+  },
+  "extDescription": {
+    "message": "Schnell Lorem-Ipsum-Text in beliebiger Länge erzeugen. Leichtgewichtig und für immer kostenlos.",
+    "description": "Extension description shown in the store."
+  },
+  "commandOpenPopup": {
+    "message": "Den Generator öffnen",
+    "description": "Description of the keyboard shortcut."
+  },
+  "labelGenerate": {
+    "message": "Erzeuge",
+    "description": "First word of the controls sentence."
+  },
+  "labelParagraphsOf": {
+    "message": "Absatz/Absätze mit",
+    "description": "Sits between the paragraph count and the length fields."
+  },
+  "labelHtmlTags": {
+    "message": "HTML-Tags",
+    "description": "Checkbox label, wraps the output in paragraph tags."
+  },
+  "unitSentences": {
+    "message": "Sätzen",
+    "description": "Length unit option."
+  },
+  "unitWords": {
+    "message": "Wörtern",
+    "description": "Length unit option."
+  },
+  "a11yParagraphCount": {
+    "message": "Anzahl der Absätze",
+    "description": "Accessible name of the paragraph count field."
+  },
+  "a11yParagraphLength": {
+    "message": "Länge jedes Absatzes",
+    "description": "Accessible name of the length field."
+  },
+  "a11yLengthUnit": {
+    "message": "Längeneinheit",
+    "description": "Accessible name of the unit selector."
+  },
+  "a11yOutput": {
+    "message": "Erzeugter Lorem-Ipsum-Text",
+    "description": "Accessible name of the output area."
+  },
+  "buttonCopy": {
+    "message": "Kopieren",
+    "description": "Copies the generated text to the clipboard."
+  },
+  "buttonCopied": {
+    "message": "Kopiert!",
+    "description": "Confirmation shown after a successful copy."
+  },
+  "buttonCopyFailed": {
+    "message": "Fehlgeschlagen",
+    "description": "Shown when the clipboard write is rejected."
+  },
+  "buttonRegenerate": {
+    "message": "Neu erzeugen",
+    "description": "Generates a new text with the current settings."
+  },
+  "footerLink": {
+    "message": "SLIG auf Github",
+    "description": "Link to the source repository."
+  }
+}

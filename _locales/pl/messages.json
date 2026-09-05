@@ -1,0 +1,70 @@
+{
+  "extName": {
+    "message": "Simple Lorem Ipsum Generator",
+    "description": "Extension name shown in the browser and in the store."
+  },
+  "extDescription": {
+    "message": "Szybko generuj tekst lorem ipsum o dowolnej długości. Lekki i na zawsze darmowy.",
+    "description": "Extension description shown in the store."
+  },
+  "commandOpenPopup": {
+    "message": "Otwórz generator",
+    "description": "Description of the keyboard shortcut."
+  },
+  "labelGenerate": {
+    "message": "Generuj",
+    "description": "First word of the controls sentence."
+  },
+  "labelParagraphsOf": {
+    "message": "akapit(y) po",
+    "description": "Sits between the paragraph count and the length fields."
+  },
+  "labelHtmlTags": {
+    "message": "Znaczniki HTML",
+    "description": "Checkbox label, wraps the output in paragraph tags."
+  },
+  "unitSentences": {
+    "message": "zdań",
+    "description": "Length unit option."
+  },
+  "unitWords": {
+    "message": "słów",
+    "description": "Length unit option."
+  },
+  "a11yParagraphCount": {
+    "message": "Liczba akapitów",
+    "description": "Accessible name of the paragraph count field."
+  },
+  "a11yParagraphLength": {
+    "message": "Długość każdego akapitu",
+    "description": "Accessible name of the length field."
+  },
+  "a11yLengthUnit": {
+    "message": "Jednostka długości",
+    "description": "Accessible name of the unit selector."
+  },
+  "a11yOutput": {
+    "message": "Wygenerowany tekst lorem ipsum",
+    "description": "Accessible name of the output area."
+  },
+  "buttonCopy": {
+    "message": "Kopiuj",
+    "description": "Copies the generated text to the clipboard."
+  },
+  "buttonCopied": {
+    "message": "Skopiowano!",
+    "description": "Confirmation shown after a successful copy."
+  },
+  "buttonCopyFailed": {
+    "message": "Niepowodzenie",
+    "description": "Shown when the clipboard write is rejected."
+  },
+  "buttonRegenerate": {
+    "message": "Generuj ponownie",
+    "description": "Generates a new text with the current settings."
+  },
+  "footerLink": {
+    "message": "SLIG na Githubie",
+    "description": "Link to the source repository."
+  }
+}

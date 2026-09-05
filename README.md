@@ -13,7 +13,7 @@ A free, privacy-friendly browser extension to quickly generate customizable Lore
 - Copy to clipboard: one click, with a screen-reader announcement
 - Remembers your settings: preferences sync across browsers
 - Keyboard shortcut: `Alt+Shift+L` opens the popup
-- Localized in English and French, dark mode included
+- Localized in English, French, German, Spanish, Italian, Portuguese (Brazil), Dutch and Polish, dark mode included
 - Forever free: no paywalls, no tracking, no network access
 
 ## Installation

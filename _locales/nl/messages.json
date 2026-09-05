@@ -1,0 +1,70 @@
+{
+  "extName": {
+    "message": "Simple Lorem Ipsum Generator",
+    "description": "Extension name shown in the browser and in the store."
+  },
+  "extDescription": {
+    "message": "Genereer snel lorem-ipsumtekst met een instelbare lengte. Licht en voor altijd gratis.",
+    "description": "Extension description shown in the store."
+  },
+  "commandOpenPopup": {
+    "message": "De generator openen",
+    "description": "Description of the keyboard shortcut."
+  },
+  "labelGenerate": {
+    "message": "Genereer",
+    "description": "First word of the controls sentence."
+  },
+  "labelParagraphsOf": {
+    "message": "alinea('s) van",
+    "description": "Sits between the paragraph count and the length fields."
+  },
+  "labelHtmlTags": {
+    "message": "HTML-tags",
+    "description": "Checkbox label, wraps the output in paragraph tags."
+  },
+  "unitSentences": {
+    "message": "zinnen",
+    "description": "Length unit option."
+  },
+  "unitWords": {
+    "message": "woorden",
+    "description": "Length unit option."
+  },
+  "a11yParagraphCount": {
+    "message": "Aantal alinea's",
+    "description": "Accessible name of the paragraph count field."
+  },
+  "a11yParagraphLength": {
+    "message": "Lengte van elke alinea",
+    "description": "Accessible name of the length field."
+  },
+  "a11yLengthUnit": {
+    "message": "Lengte-eenheid",
+    "description": "Accessible name of the unit selector."
+  },
+  "a11yOutput": {
+    "message": "Gegenereerde lorem-ipsumtekst",
+    "description": "Accessible name of the output area."
+  },
+  "buttonCopy": {
+    "message": "Kopiëren",
+    "description": "Copies the generated text to the clipboard."
+  },
+  "buttonCopied": {
+    "message": "Gekopieerd!",
+    "description": "Confirmation shown after a successful copy."
+  },
+  "buttonCopyFailed": {
+    "message": "Mislukt",
+    "description": "Shown when the clipboard write is rejected."
+  },
+  "buttonRegenerate": {
+    "message": "Opnieuw genereren",
+    "description": "Generates a new text with the current settings."
+  },
+  "footerLink": {
+    "message": "SLIG op Github",
+    "description": "Link to the source repository."
+  }
+}
