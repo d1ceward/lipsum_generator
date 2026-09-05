@@ -11,7 +11,7 @@ function seeded(values) {
 }
 
 function sentencesOf(paragraph) {
-  return paragraph.replace(/<\/?p>/g, '').split('. ')
+  return paragraph.replace(/<\/?p>/g, '').replace(/\.$/, '').split('. ')
 }
 
 describe('generate', () => {
