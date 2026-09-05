@@ -1,17 +1,27 @@
 {
-  "name": "Simple Lorem Ipsum Generator",
-  "version": "1.4.0",
-  "description": "Quick way to generate lorem ipsum text with customizable size. Light and forever free.",
+  "name": "__MSG_extName__",
+  "version": "1.5.0",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "permissions": ["storage"],
   "offline_enabled": true,
   "incognito": "spanning",
   "action": {
     "default_popup": "popup.html"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "__MSG_commandOpenPopup__"
+    }
+  },
   "icons": {
     "16": "images/icons/16.png",
     "32": "images/icons/32.png",
-    "48": "images/icons/64.png",
+    "48": "images/icons/48.png",
+    "64": "images/icons/64.png",
     "128": "images/icons/128.png"
   },
   "manifest_version": 3

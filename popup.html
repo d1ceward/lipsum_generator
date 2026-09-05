@@ -1,77 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Simple Lorem Ipsum Generator</title>
-    <link rel='stylesheet' media='all' href='popup.css'>
+    <link rel="stylesheet" media="all" href="popup.css">
   </head>
   <body>
-    <label class="visually-hidden" for="paragraph-count">Number of paragraphs</label>
-    <span class="form-text">Generate</span>
-    <select class= "selectbox" id="paragraph-count" name="paragraph-count">
-      <option selected="selected" value="1">1 paragraph</option>
-      <option value="2">2 paragraphs</option>
-      <option value="3">3 paragraphs</option>
-      <option value="4">4 paragraphs</option>
-      <option value="5">5 paragraphs</option>
-      <option value="6">6 paragraphs</option>
-      <option value="7">7 paragraphs</option>
-      <option value="8">8 paragraphs</option>
-      <option value="9">9 paragraphs</option>
-      <option value="10">10 paragraphs</option>
-    </select>
-    <label class="visually-hidden" for="paragraph-length">Sentences per paragraph</label>
-    <span class="form-text"> with </span>
-    <select class="selectbox" id="paragraph-length" name="paragraph-length">
-      <option value="1">1 sentence</option>
-      <option value="2">2 sentences</option>
-      <option value="3">3 sentences</option>
-      <option value="4">4 sentences</option>
-      <option value="5">5 sentences</option>
-      <option value="6">6 sentences</option>
-      <option value="7">7 sentences</option>
-      <option value="8">8 sentences</option>
-      <option value="9">9 sentences</option>
-      <option selected="selected" value="10">10 sentences</option>
-      <option value="11">11 sentences</option>
-      <option value="12">12 sentences</option>
-      <option value="13">13 sentences</option>
-      <option value="14">14 sentences</option>
-      <option value="15">15 sentences</option>
-      <option value="16">16 sentences</option>
-      <option value="17">17 sentences</option>
-      <option value="18">18 sentences</option>
-      <option value="19">19 sentences</option>
-      <option value="20">20 sentences</option>
-      <option value="21">21 sentences</option>
-      <option value="22">22 sentences</option>
-      <option value="23">23 sentences</option>
-      <option value="24">24 sentences</option>
-      <option value="25">25 sentences</option>
-      <option value="26">26 sentences</option>
-      <option value="27">27 sentences</option>
-      <option value="28">28 sentences</option>
-      <option value="29">29 sentences</option>
-      <option value="30">30 sentences</option>
-    </select>
-    <label class="visually-hidden" for="paragraph-type">Wrap output in HTML tags</label>
-    <span class="form-text"> per paragraph | HTML tags </span>
-    <select class="selectbox" id="paragraph-type" name="paragraph-type">
-      <option selected="selected" value="No">No</option>
-      <option value="Yes">Yes</option>
-    </select>
+    <!-- The inline text is the English fallback; localize() swaps it for the
+         viewer's locale on load. A test keeps the two in step. -->
+    <div class="controls">
+      <span class="form-text" data-i18n="labelGenerate">Generate</span>
+
+      <label class="visually-hidden" for="paragraph-count" data-i18n="a11yParagraphCount">Number of paragraphs</label>
+      <input class="number-input" id="paragraph-count" name="paragraph-count" type="number" inputmode="numeric">
+
+      <span class="form-text" data-i18n="labelParagraphsOf">paragraph(s) of</span>
+
+      <label class="visually-hidden" for="paragraph-length" data-i18n="a11yParagraphLength">Length of each paragraph</label>
+      <input class="number-input" id="paragraph-length" name="paragraph-length" type="number" inputmode="numeric">
+
+      <label class="visually-hidden" for="length-unit" data-i18n="a11yLengthUnit">Length unit</label>
+      <select class="selectbox" id="length-unit" name="length-unit">
+        <option value="sentences" data-i18n="unitSentences">sentences</option>
+        <option value="words" data-i18n="unitWords">words</option>
+      </select>
+
+      <label class="checkbox-label" for="html-tags">
+        <input id="html-tags" name="html-tags" type="checkbox">
+        <span data-i18n="labelHtmlTags">HTML tags</span>
+      </label>
+    </div>
+
     <div class="scroll-container">
+      <label class="visually-hidden" for="content-area" data-i18n="a11yOutput">Generated lorem ipsum text</label>
       <textarea id="content-area" name="content-area" spellcheck="false"></textarea>
     </div>
+
     <div class="footer">
       <div class="footer-left">
-        <button class="button" id="copy-button" type="button">Copy</button>
-        <button class="button" id="regenerate-button" type="button">Regenerate</button>
+        <button class="button" id="copy-button" type="button" data-i18n="buttonCopy">Copy</button>
+        <button class="button" id="regenerate-button" type="button" data-i18n="buttonRegenerate">Regenerate</button>
       </div>
       <div class="footer-right">
-        <a href="https://github.com/d1ceward/lipsum_generator" target="_blank">SLIG on Github</a> - v<span id="version"></span>
+        <a href="https://github.com/d1ceward/lipsum_generator" target="_blank" rel="noopener noreferrer" data-i18n="footerLink">SLIG on Github</a>
+        - v<span id="version"></span>
       </div>
     </div>
-    <script src="popup.js"></script>
+
+    <div class="visually-hidden" id="status" role="status" aria-live="polite"></div>
+
+    <script type="module" src="popup.js"></script>
   </body>
 </html>

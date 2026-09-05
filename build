@@ -1,14 +1,62 @@
-trap "exit" INT
-printf "\033[0;32m====>\033[0m Starting building lipsum_generator.zip\n"
-rm -f ./lipsum_generator.zip
-cat <<'EOF' | zip ./lipsum_generator.zip -@
+#!/usr/bin/env bash
+# Packages the extension into dist/. Pass --firefox to also emit an AMO zip.
+set -euo pipefail
+trap 'exit' INT
+
+cd "$(dirname "$0")"
+
+readonly DIST="dist"
+readonly NAME="lipsum_generator"
+readonly VERSION="$(node -p "require('./manifest.json').version")"
+
+# Everything the extension loads at runtime. Docs, tests and CI config stay out.
+readonly FILES=(
+./_locales/en/messages.json
+./_locales/fr/messages.json
+./browser.js
+./generator.js
 ./images/icons/128.png
 ./images/icons/16.png
 ./images/icons/32.png
+./images/icons/48.png
 ./images/icons/64.png
 ./manifest.json
 ./popup.css
 ./popup.html
 ./popup.js
-EOF
-printf "\033[0;32m==>\033[0m Done...\n"
+)
+
+info() { printf '\033[0;32m====>\033[0m %s\n' "$1"; }
+
+info "Building ${NAME} v${VERSION}"
+rm -rf "${DIST}"
+mkdir -p "${DIST}"
+
+for file in "${FILES[@]}"; do
+  [[ -f "${file}" ]] || { printf '\033[0;31m====>\033[0m missing %s\n' "${file}" >&2; exit 1; }
+done
+
+printf '%s\n' "${FILES[@]}" | zip -q "${DIST}/${NAME}.zip" -@
+info "Wrote ${DIST}/${NAME}.zip"
+
+if [[ "${1:-}" == "--firefox" ]]; then
+  # Firefox needs an explicit add-on id and rejects Chrome-only manifest keys.
+  node -e '
+    const fs = require("fs")
+    const manifest = JSON.parse(fs.readFileSync("manifest.json", "utf8"))
+
+    delete manifest.offline_enabled
+    manifest.browser_specific_settings = {
+      gecko: { id: "slig@d1ceward.com", strict_min_version: "115.0" }
+    }
+    fs.mkdirSync("dist/firefox", { recursive: true })
+    fs.writeFileSync("dist/firefox/manifest.json", `${JSON.stringify(manifest, null, 2)}\n`)
+  '
+
+  ( cd "${DIST}/firefox" && zip -q "../${NAME}-firefox.zip" manifest.json )
+  printf '%s\n' "${FILES[@]/.\/manifest.json/}" | grep . | zip -q "${DIST}/${NAME}-firefox.zip" -@
+  rm -rf "${DIST}/firefox"
+  info "Wrote ${DIST}/${NAME}-firefox.zip"
+fi
+
+info "Done"
