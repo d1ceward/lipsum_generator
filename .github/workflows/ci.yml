@@ -28,5 +28,10 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Lint and format check
         run: pnpm exec biome ci .
-      - name: Run Test
+      - name: Run tests
         run: pnpm test
+      - name: Build extension archives
+        run: |
+          ./build --firefox
+          unzip -t dist/lipsum_generator.zip
+          unzip -t dist/lipsum_generator-firefox.zip
