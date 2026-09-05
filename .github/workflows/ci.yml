@@ -1,0 +1,37 @@
+---
+name: CI
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+      - name: Setup Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'pnpm'
+      - name: Install Node.js dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint and format check
+        run: pnpm exec biome ci .
+      - name: Run tests
+        run: pnpm test
+      - name: Build extension archives
+        run: |
+          ./build --firefox
+          unzip -t dist/lipsum_generator.zip
+          unzip -t dist/lipsum_generator-firefox.zip
